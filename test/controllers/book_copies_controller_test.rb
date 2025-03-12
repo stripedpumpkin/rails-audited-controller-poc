@@ -2,13 +2,24 @@ require "test_helper"
 
 class BookCopiesControllerTest < ActionDispatch::IntegrationTest
   test 'can create book' do
-    # assert_difference 'BookCopy.count', 1 do
-    post '/book_copies'
-    # end
+    assert_difference 'Audited::Audit.count', 1 do
+      assert_difference 'BookCopy.count', 1 do
+        post(
+          '/book_copies',
+          params: {
+            book_copy: {
+              book_id: books(:poe_poetry_and_tales).id,
+              state: 'new'
+            }
+          }
+        )
+      end
+    end
+
     assert_response :success
   end
 
-  test 'updates are not audited' do
+  test 'updates can be audited' do
     book_copy = book_copies(:poe_poetry_one)
 
     BookCopy.auditing_enabled = true

@@ -4,5 +4,5 @@ docker_bash:
 docker_build:
 	docker compose build
 
-migration:
+migrate:
 	bundle exec rails db:migrate
