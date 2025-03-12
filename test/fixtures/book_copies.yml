@@ -1,0 +1,5 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+poe_poetry_one:
+  book: poe_poetry_and_tales
+  state: good

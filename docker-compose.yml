@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  controller_poc_server:
+    build:
+      context: .
+    volumes:
+      - .:/rails-audited-controller-poc
+    depends_on:
+      - controller_poc_pg_16
+    ports:
+      - "3543:3000"
+    stdin_open: true
+    tty: true
+
+  controller_poc_pg_16:
+    image: postgres:16.6
+    ports:
+      - "5312:5432"
+    volumes:
+      - controller_poc_pg_16_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: senhor_controller
+      POSTGRES_PASSWORD: not_a_real_secret
+      POSTGRES_DB: rails_audited_controller_poc_test
+
+volumes:
+  controller_poc_pg_16_data:

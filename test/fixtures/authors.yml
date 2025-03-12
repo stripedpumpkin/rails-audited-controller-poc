@@ -1,0 +1,6 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+poe:
+  name: Edgar Allan Poe
+  birth_year: 1809
+  death_year: 1849
